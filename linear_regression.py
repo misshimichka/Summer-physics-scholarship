@@ -17,12 +17,13 @@ b = np.matrix([[x_y_sum, 0], [y_sum, 0]])
 
 x = np.linalg.inv(a) * b
 
-a = -8.87552197e-06
-b = 1.38192373e-01
+a = 0.20031778
+b = -6.51961438
 
 x = [1479, 1595, 4301, 6470, 9740, 13282, 17784]
 y = [x[i] * a + b for i in range(len(x))]
 
 pyplot.scatter(x, y)
 pyplot.plot(x, y, color="red")
+pyplot.suptitle("coefficient of determination: 0.45804266361853196")
 pyplot.show()
