@@ -4,7 +4,7 @@ import os
 files = [i[2] for i in os.walk("data")][0]
 for i in range(11):
     input_file = open("data/" + files[i]).readlines()
-    s = [i.rstrip("\n") for i in input_file][2:]
+    s = [i.rstrip("\n") for i in input_file]
 
     for j in range(len(s)):
         while s[j].count(" ") > 1:

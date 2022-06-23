@@ -34,12 +34,12 @@ cst_lambda = [float(i.rstrip("\n")) for i in cst_lambda]
 cst_number_of_cells = open("cst_filenames.txt").readlines()
 cst_number_of_cells = [int(i.rstrip("\n")[:5].replace("_", "")) for i in cst_number_of_cells]
 
-accuracy = [abs(cst_lambda[i] - REFERENCE_MULTEM_LAMBDA_0) / REFERENCE_MULTEM_LAMBDA_0 for i in range(len(cst_lambda))]
+accuracy = [abs(cst_lambda[i] - REFERENCE_MULTEM_LAMBDA_0) / REFERENCE_MULTEM_LAMBDA_0 * 100 for i in range(len(cst_lambda))]
 
 figure = plt.figure()
 ax = figure.add_subplot(1, 1, 1)
 ax.scatter(cst_number_of_cells, accuracy, color='tab:purple')
 
 plt.xlabel("Количество ячеек сетки")
-plt.ylabel("Погрешность")
+plt.ylabel("Погрешность, %")
 plt.show()
