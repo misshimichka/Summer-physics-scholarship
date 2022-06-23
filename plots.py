@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from math import log1p
 
 REFERENCE_MULTEM_LAMBDA_0 = 8.155949067314925287e+02
 
@@ -42,4 +43,42 @@ ax.scatter(cst_number_of_cells, accuracy, color='tab:purple')
 
 plt.xlabel("Количество ячеек сетки")
 plt.ylabel("Погрешность, %")
+plt.show()
+
+
+x1 = [1479, 1595, 4301, 6470, 9740, 13282, 17784]
+y1 = [0.17470339296668025, 0.1619450650394475, 0.04886708418741835, 0.034249556520420395, 0.02618220048060735, 0.019986229124758337, 0.016356934880176668]
+
+figure = plt.figure()
+ax = figure.add_subplot(1, 1, 1)
+ax.scatter(x1, y1, color='tab:purple')
+plt.xscale("log")
+plt.yscale("log")
+
+plt.xlabel("Количество ячеек сетки")
+plt.ylabel("Погрешность, %")
+plt.show()
+
+
+y = [abs(cst_lambda[i] - REFERENCE_MULTEM_LAMBDA_0) / REFERENCE_MULTEM_LAMBDA_0 * 100 for i in range(len(cst_lambda))]
+x = cst_number_of_cells
+
+x1 = sorted(x)[:-4]
+y1 = []
+for i in range(len(x)):
+    if x[i] not in x1:
+        y1.append(y[i])
+x1 = sorted(x)[-4:]
+print(len(x1), len(y1))
+print(x1, y1)
+
+figure = plt.figure()
+ax = figure.add_subplot(1, 1, 1)
+
+log_x = [log1p(x1[i] - 1) for i in range(len(x1))]
+log_y = [log1p(y1[i] - 1) for i in range(len(y1))]
+
+print(log_x, log_y)
+
+ax.scatter(log_x, log_y, color='tab:purple')
 plt.show()
